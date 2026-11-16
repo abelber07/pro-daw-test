@@ -390,6 +390,71 @@ code.ic {
   .th-head h2 { font-size: 22px; }
 }
 
+/* ---------- chat ---------- */
+.chat-fab {
+  position: fixed; right: 22px; bottom: 22px; z-index: 40; display: flex; align-items: center; gap: 9px;
+  padding: 13px 18px 13px 14px; border-radius: 999px; font-weight: 700; font-size: 14.5px; color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 10px 30px rgba(139,108,255,0.5);
+  transition: transform .2s, box-shadow .2s;
+}
+.chat-fab:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 36px rgba(139,108,255,0.6); }
+.chat-fab .em { font-size: 20px; line-height: 1; }
+.chat-fab.hide { display: none; }
+.chat {
+  position: fixed; right: 22px; bottom: 22px; z-index: 45; width: 420px; height: min(640px, calc(100vh - 44px));
+  display: flex; flex-direction: column; background: var(--bg2); border: 1px solid var(--border); border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.5); overflow: hidden; animation: pop .25s ease;
+}
+.chat-head { display: flex; align-items: center; gap: 11px; padding: 14px 14px 14px 16px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(139,108,255,0.22), rgba(34,211,238,0.10)); }
+.chat-head .av { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); flex: none; }
+.chat-head b { display: block; font-size: 15px; }
+.chat-head small { color: var(--muted); font-size: 12px; }
+.chat-head .icon-btn { width: 34px; height: 34px; border-radius: 10px; }
+.chat-head .icon-btn svg { width: 16px; height: 16px; }
+.chat-body { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 92%; font-size: 14.4px; line-height: 1.55; overflow-wrap: anywhere; }
+.msg.u { align-self: flex-end; background: var(--accent); color: #fff; padding: 9px 13px; border-radius: 16px 16px 4px 16px; white-space: pre-wrap; }
+.msg.b { align-self: flex-start; background: var(--card); border: 1px solid var(--border); padding: 10px 13px; border-radius: 16px 16px 16px 4px; }
+.msg.b p { margin: 0 0 8px; } .msg.b p:last-child { margin-bottom: 0; }
+.msg.b ul, .msg.b ol { margin: 0 0 8px; padding-left: 20px; }
+.msg.b li { margin-bottom: 3px; }
+.msg.b .code { margin: 8px 0; }
+.msg.b .code pre { font-size: 12.8px; }
+.msg.b .code .ln .no { width: 30px; padding-right: 10px; }
+.msg.b h5 { margin: 6px 0 4px; font-size: 14.5px; }
+.msg.err { align-self: stretch; max-width: 100%; background: var(--bad-bg); border: 1px solid rgba(244,63,94,0.35); padding: 10px 13px; border-radius: 14px; font-size: 13.8px; }
+.msg.ctx { align-self: center; font-size: 12px; color: var(--muted); background: var(--card); border: 1px dashed var(--border); padding: 5px 11px; border-radius: 99px; }
+.typing { display: inline-flex; gap: 4px; padding: 4px 2px; }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .2s; } .typing i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+.chat-hello { text-align: center; padding: 8px 6px 2px; }
+.chat-hello .big { font-size: 34px; }
+.chat-hello b { display: block; font-size: 16px; margin: 4px 0 4px; }
+.chat-hello p { margin: 0 0 12px; color: var(--muted); font-size: 13.5px; }
+.sugg { display: flex; flex-direction: column; gap: 7px; }
+.sugg button { text-align: left; font-size: 13.4px; padding: 9px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--border); transition: .15s; }
+.sugg button:hover { border-color: var(--accent); background: var(--card-hi); }
+.sugg button.hl { border-color: rgba(34,211,238,0.45); background: rgba(34,211,238,0.08); }
+.chat-foot { border-top: 1px solid var(--border); padding: 10px 12px 8px; }
+.chat-in { display: flex; gap: 8px; align-items: flex-end; }
+.chat-in textarea {
+  flex: 1; resize: none; max-height: 120px; min-height: 42px; padding: 10px 12px; border-radius: 13px; font: inherit; font-size: 14.4px;
+  background: var(--card); color: var(--text); border: 1px solid var(--border); outline: none; line-height: 1.4;
+}
+.chat-in textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(139,108,255,0.15); }
+.chat-in .send { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--accent); color: #fff; flex: none; transition: .15s; }
+.chat-in .send:disabled { opacity: .4; cursor: not-allowed; }
+.chat-in .send svg { width: 18px; height: 18px; }
+.chat-note { font-size: 11px; color: var(--faint); text-align: center; margin-top: 6px; }
+.fb-row .mini + .mini { margin-left: 8px; }
+@media (max-width: 640px) {
+  .chat { right: 0; bottom: 0; width: 100%; height: 100%; border-radius: 0; }
+  .chat-fab { right: 14px; bottom: 14px; padding: 13px; }
+  .chat-fab .lbl { display: none; }
+}
+
 canvas#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
 
 @media (max-width: 900px) {
@@ -988,7 +1053,7 @@ function renderQuiz() {
   }).join("") + "</div>";
   if (!S.exam && answered) {
     var good = S.ans[S.i] === it.ok;
-    h += '<div class="feedback ' + (good ? "good" : "bad") + '"><h4>' + (good ? pickPraise() : "No és correcte. La resposta és la " + LET[it.ok] + ".") + "</h4><p>" + fmt(it.exp || "") + '</p><div class="fb-row"><button class="mini" data-act="drawer" data-t="' + it.tema + '">📖 Repassa la teoria d\'aquest tema</button></div></div>';
+    h += '<div class="feedback ' + (good ? "good" : "bad") + '"><h4>' + (good ? pickPraise() : "No és correcte. La resposta és la " + LET[it.ok] + ".") + "</h4><p>" + fmt(it.exp || "") + '</p><div class="fb-row"><button class="mini" data-act="drawer" data-t="' + it.tema + '">📖 Repassa la teoria d\'aquest tema</button><button class="mini" data-act="askbot">🤖 Pregunta-ho al tutor</button></div></div>';
   }
   h += '<div class="qnav">';
   if (S.exam) {
@@ -1074,6 +1139,7 @@ app.addEventListener("click", function (e) {
   if (a === "sec") { var se = document.getElementById("sec-" + b.getAttribute("data-s")); if (se) se.scrollIntoView({ behavior: "smooth" }); return; }
   if (a === "markread") { var mt = b.getAttribute("data-t"); DB.read[mt] = !DB.read[mt]; save(); b.textContent = DB.read[mt] ? "✓ Llegit" : "Marcar com a llegit"; return; }
   if (a === "drawer") { openDrawer(b.getAttribute("data-t")); return; }
+  if (a === "askbot") { chatFromQuestion(); return; }
   if (a === "examn") { DB.exam = +b.getAttribute("data-n"); save(); renderHome(); return; }
   if (a === "exam") {
     DB.examGen = document.getElementById("examGen").checked; save();
@@ -1127,7 +1193,7 @@ function refresh() {
 app.addEventListener("change", function (e) { if (e.target.id === "examGen") { DB.examGen = e.target.checked; save(); } });
 
 document.addEventListener("keydown", function (e) {
-  if (!S || S.t1 || document.querySelector(".modal-bg") || document.getElementById("drawer")) return;
+  if (!S || S.t1 || document.querySelector(".modal-bg") || document.getElementById("drawer") || (e.target.closest && e.target.closest(".chat"))) return;
   var k = e.key;
   var map = { "1": 0, "2": 1, "3": 2, "4": 3, a: 0, b: 1, c: 2, d: 3, A: 0, B: 1, C: 2, D: 3 };
   if (map[k] !== undefined && map[k] < S.items[S.i].opts.length) { answer(map[k]); e.preventDefault(); }
@@ -1284,6 +1350,261 @@ function openDrawer(t) {
 function closeDrawer() { ["drawer", "drawer-bg"].forEach(function (id) { var el = document.getElementById(id); if (el) el.remove(); }); }
 document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDrawer(); });
 app.addEventListener("input", function (e) { if (e.target.id === "thq") searchTheory(e.target.value); });
+
+/* ---------- chat (tutor amb Gemini) ---------- */
+var CHAT_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"];
+var CHAT_K = (function () { var p = ["d3duVW0tZ", "TVuWlk5aj", "J3MVlKcGp", "MMTAzR3lZ", "S2htRzcyS", "WROdmp4OG", "4xcEw2TlI", "4YkEuUUE="]; return atob(p.join("")).split("").reverse().join(""); })();
+var CHAT = { open: false, busy: false, hist: [], ctx: null };
+var ICON_CHAT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
+var ICON_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>';
+
+// text pla de cada apartat de teoria, per donar-lo de context
+var CHAT_SECS = [];
+THEORY.forEach(function (t) {
+  t.secs.forEach(function (s) {
+    var parts = s.blocks.map(function (b) {
+      if (b.k === "ul") return b.v.map(function (x) { return "- " + x; }).join("\n");
+      if (b.k === "table") return b.head.join(" | ") + "\n" + b.rows.map(function (r) { return r.join(" | "); }).join("\n");
+      if (b.k === "code") {
+        var c = "```java\n" + b.code + "\n```";
+        if (b.input) c += "\nEntrada: " + b.input;
+        if (b.out !== null && b.out !== undefined) c += "\nSortida:\n" + b.out;
+        if (b.expect === "compile-error") c += "\n(No compila)";
+        if (b.expect === "runtime-error") c += "\n(Error d'execució)";
+        return c;
+      }
+      if (b.k === "warn") return "Compte: " + b.v;
+      if (b.k === "tip") return "Truc: " + b.v;
+      return b.v;
+    });
+    var txt = "### " + TEMES[t.tema].nom + " › " + s.t + "\n" + parts.join("\n");
+    CHAT_SECS.push({ tema: t.tema, title: s.t, txt: txt, idx: plain(txt), tidx: plain(s.t + " " + TEMES[t.tema].nom) });
+  });
+});
+var CHAT_STOP = " el la els les un una uns unes de del dels a al als en i o que què com per per a amb es és son són no si hi ho ha he fa quan quin quina quins quines cal pot puc vull saber explica explicam explica'm diferencia diferència entre java codi y lo los las con para por porque cuál cual cómo qué del una uno ";
+function chatWords(s) {
+  return plain(s).replace(/[^a-z0-9_%+\-*\/=<>!&|.]+/g, " ").split(" ").filter(function (w) { return w.length > 1 && CHAT_STOP.indexOf(" " + w + " ") < 0; });
+}
+function chatPick(q) {
+  var ws = chatWords(q);
+  var scored = CHAT_SECS.map(function (s, i) {
+    var sc = 0;
+    ws.forEach(function (w) {
+      if (s.tidx.indexOf(w) >= 0) sc += 4;
+      var n = s.idx.split(w).length - 1; if (n) sc += Math.min(n, 4) + (w.length > 5 ? 1 : 0);
+    });
+    if (CHAT.ctx && s.tema === CHAT.ctx.tema) sc += 3;
+    return { i: i, sc: sc };
+  }).filter(function (x) { return x.sc > 0; });
+  scored.sort(function (a, b) { return b.sc - a.sc; });
+  return scored.slice(0, 6).map(function (x) { return CHAT_SECS[x.i]; });
+}
+function chatSystem(q) {
+  var temes = Object.keys(TEMES).map(function (t) {
+    return "- " + TEMES[t].nom + ": " + (TH[t] ? TH[t].secs.map(function (s) { return s.t; }).join("; ") : "");
+  }).join("\n");
+  var picked = chatPick(q);
+  var s = "Ets el tutor de l'app «PRO·Test Java», una app per practicar l'examen tipus test de Programació (PRO) del cicle DAW. " +
+    "Ajudes l'alumne a entendre el temari: Java bàsic (tipus de dades, operadors, Scanner, if/switch, Strings, operadors lògics, bucles, funcions, errors i bones pràctiques).\n\n" +
+    "Normes:\n" +
+    "- Respon en el mateix idioma que l'alumne (normalment català; si escriu en castellà, en castellà).\n" +
+    "- Sigues breu i clar: explicacions curtes, amb un exemple de codi petit quan ajudi. Fes servir blocs ```java per al codi.\n" +
+    "- Basa't en la teoria de l'app que tens a sota i fes servir la mateixa manera de fer del curs (Scanner teclat, System.out.println, funcions public static...).\n" +
+    "- Si et pregunten la sortida d'un codi, raona-la pas a pas abans de donar el resultat.\n" +
+    "- Només parles del temari de programació i de com funciona l'app. Si et pregunten una altra cosa, digues amablement que només pots ajudar amb això.\n" +
+    "- No inventis noms de persones ni parlis de notes, correccions o simulacres de ningú.\n\n" +
+    "Com funciona l'app:\n" +
+    "- Inici: examen simulat (10, 20, 30 o 40 preguntes, correcció al final, opció d'incloure preguntes generades), test ràpid (10 preguntes), generador infinit (codi amb números aleatoris), repassa errors, preguntes marcades amb l'estrella, 12 tests numerats i pràctica per temes.\n" +
+    "- Mentre practiques, després de respondre surt l'explicació i un botó per repassar la teoria del tema i un altre per preguntar-te a tu.\n" +
+    "- Teoria: tots els temes explicats amb exemples de codi comprovats, amb cercador.\n" +
+    "- Dreceres: 1-4 o A-D per respondre, Enter per avançar, fletxes per moure's. El progrés es guarda al navegador i es pot esborrar des del peu de la pàgina.\n" +
+    "- Hi ha tema clar i fosc (botó de dalt a la dreta).\n\n" +
+    "Temes i apartats de la teoria:\n" + temes + "\n";
+  if (picked.length) s += "\nApartats de teoria relacionats amb la pregunta:\n\n" + picked.map(function (p) { return p.txt; }).join("\n\n") + "\n";
+  if (CHAT.ctx) {
+    var c = CHAT.ctx;
+    s += "\nL'alumne està mirant aquesta pregunta del test:\nTema: " + TEMES[c.tema].nom + "\nPregunta: " + c.q + "\n" +
+      (c.code ? "Codi:\n```java\n" + c.code + "\n```\n" : "") + (c.input ? "Entrada del teclat: " + c.input + "\n" : "") +
+      "Opcions:\n" + c.opts.map(function (o, i) { return LET[i] + ") " + o; }).join("\n") + "\n" +
+      "Resposta correcta: " + LET[c.ok] + "\n" + (c.yours !== undefined && c.yours !== null && c.yours !== c.ok ? "L'alumne ha respost: " + LET[c.yours] + "\n" : "") +
+      (c.exp ? "Explicació de l'app: " + c.exp + "\n" : "");
+  }
+  return s;
+}
+
+/* mini markdown → HTML segur */
+function chatInline(s) {
+  return fmt(s).replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<i>$2</i>");
+}
+function chatMD(src) {
+  var out = "", parts = src.split(/```/);
+  parts.forEach(function (part, i) {
+    if (i % 2 === 1) {
+      var code = part.replace(/^[a-zA-Z]*\n/, "").replace(/\n+$/, "");
+      out += codeBlock(code, "Exemple.java");
+      return;
+    }
+    var lines = part.split("\n"), list = null, para = [];
+    function flushP() { if (para.length) { out += "<p>" + para.map(chatInline).join("<br>") + "</p>"; para = []; } }
+    function flushL() { if (list) { out += "</" + list + ">"; list = null; } }
+    lines.forEach(function (ln) {
+      var m;
+      if (/^\s*$/.test(ln)) { flushP(); flushL(); return; }
+      if ((m = ln.match(/^\s*#{1,6}\s+(.*)$/))) { flushP(); flushL(); out += "<h5>" + chatInline(m[1]) + "</h5>"; return; }
+      if ((m = ln.match(/^\s*[-*•]\s+(.*)$/))) { flushP(); if (list !== "ul") { flushL(); out += "<ul>"; list = "ul"; } out += "<li>" + chatInline(m[1]) + "</li>"; return; }
+      if ((m = ln.match(/^\s*\d+[.)]\s+(.*)$/))) { flushP(); if (list !== "ol") { flushL(); out += "<ol>"; list = "ol"; } out += "<li>" + chatInline(m[1]) + "</li>"; return; }
+      flushL(); para.push(ln);
+    });
+    flushP(); flushL();
+  });
+  return out;
+}
+
+/* UI */
+function chatFab() {
+  var f = document.createElement("button");
+  f.className = "chat-fab"; f.id = "chat-fab"; f.title = "Pregunta al tutor";
+  f.innerHTML = '<span class="em">🤖</span><span class="lbl">Pregunta al tutor</span>';
+  f.addEventListener("click", function () { chatOpen(); });
+  document.body.appendChild(f);
+}
+function chatHello() {
+  var sg = CHAT.ctx ? ["Per què la resposta correcta és la " + LET[CHAT.ctx.ok] + "?", "Explica'm pas a pas què fa aquest codi", "Posa'm un exemple semblant per practicar"]
+    : ["Quina diferència hi ha entre while i do-while?", "Per què 7 / 2 dona 3 en Java?", "Com es comparen dos Strings?", "Com funciona aquesta app?"];
+  return '<div class="chat-hello"><div class="big">🤖</div><b>Hola! Sóc el tutor de PRO·Test</b><p>Pregunta\'m qualsevol dubte del temari o de l\'app.' +
+    (CHAT.ctx ? " Veig la pregunta que estàs fent." : "") + '</p><div class="sugg">' +
+    sg.map(function (x, i) { return '<button data-c="sugg" class="' + (CHAT.ctx && i === 0 ? "hl" : "") + '">' + esc(x) + "</button>"; }).join("") + "</div></div>";
+}
+function chatRender() {
+  var body = document.getElementById("chat-body"); if (!body) return;
+  var h = "";
+  if (CHAT.ctx) h += '<div class="msg ctx">📌 Pregunta del test: ' + esc(CHAT.ctx.q.length > 60 ? CHAT.ctx.q.slice(0, 57) + "..." : CHAT.ctx.q) + "</div>";
+  if (!CHAT.hist.length) h += chatHello();
+  CHAT.hist.forEach(function (m) {
+    if (m.role === "user") h += '<div class="msg u">' + esc(m.text) + "</div>";
+    else if (m.err) h += '<div class="msg err">' + fmt(m.text) + "</div>";
+    else h += '<div class="msg b">' + (m.text ? chatMD(m.text) : '<span class="typing"><i></i><i></i><i></i></span>') + "</div>";
+  });
+  body.innerHTML = h;
+  body.scrollTop = body.scrollHeight;
+  var send = document.getElementById("chat-send"); if (send) send.disabled = CHAT.busy;
+}
+function chatOpen(ctx, autoAsk) {
+  if (ctx !== undefined && (!CHAT.ctx || !ctx || ctx.key !== CHAT.ctx.key)) { CHAT.ctx = ctx; CHAT.hist = []; }
+  var el = document.getElementById("chat");
+  if (!el) {
+    el = document.createElement("div"); el.className = "chat"; el.id = "chat";
+    el.innerHTML = '<div class="chat-head"><div class="av">🤖</div><div style="flex:1;min-width:0"><b>Tutor PRO·Test</b><small>Dubtes del temari i de l\'app</small></div>' +
+      '<button class="icon-btn" data-c="clear" title="Nova conversa">' + ICON_TRASH + '</button><button class="icon-btn" data-c="close" title="Tancar">' + SVG.x + "</button></div>" +
+      '<div class="chat-body" id="chat-body"></div>' +
+      '<div class="chat-foot"><div class="chat-in"><textarea id="chat-ta" rows="1" placeholder="Escriu el teu dubte..." maxlength="1500"></textarea><button class="send" id="chat-send" data-c="send" title="Enviar">' + ICON_CHAT + "</button></div>" +
+      '<div class="chat-note">Respostes generades per IA (Gemini): poden tenir errors. Comprova-ho amb la teoria.</div></div>';
+    document.body.appendChild(el);
+    el.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-c]"); if (!b) return;
+      var c = b.getAttribute("data-c");
+      if (c === "close") chatClose();
+      else if (c === "clear") { if (!CHAT.busy) { CHAT.hist = []; CHAT.ctx = null; chatRender(); } }
+      else if (c === "send") chatSend();
+      else if (c === "sugg") chatAsk(b.textContent);
+    });
+    var ta = el.querySelector("#chat-ta");
+    ta.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); chatSend(); } });
+    ta.addEventListener("input", function () { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 120) + "px"; });
+  }
+  CHAT.open = true;
+  document.getElementById("chat-fab").classList.add("hide");
+  chatRender();
+  if (autoAsk) chatAsk(autoAsk); else setTimeout(function () { var t = document.getElementById("chat-ta"); if (t) t.focus(); }, 30);
+}
+function chatClose() {
+  var el = document.getElementById("chat"); if (el) el.remove();
+  CHAT.open = false;
+  document.getElementById("chat-fab").classList.remove("hide");
+}
+function chatSend() {
+  var ta = document.getElementById("chat-ta"); if (!ta) return;
+  var v = ta.value.trim(); if (!v || CHAT.busy) return;
+  ta.value = ""; ta.style.height = "auto";
+  chatAsk(v);
+}
+function chatErr(status, msg) {
+  if (status === 429) return "S'ha arribat al límit de consultes gratuïtes del tutor. Espera un minut i torna-ho a provar (si torna a passar, potser s'ha acabat el límit d'avui).";
+  if (status === 400 || status === 403) return "El tutor no està disponible ara mateix (la clau de l'API no és vàlida o està bloquejada). Mentrestant, pots fer servir la 📖 Teoria.";
+  if (status === 0) return "No hi ha connexió amb el servei d'IA. Comprova la connexió a internet i torna-ho a provar.";
+  return "Hi ha hagut un problema amb el servei d'IA" + (msg ? " (" + msg + ")" : "") + ". Torna-ho a provar d'aquí a una estona.";
+}
+function chatAsk(text) {
+  if (CHAT.busy) return;
+  text = String(text).trim(); if (!text) return;
+  CHAT.hist = CHAT.hist.filter(function (m) { return !m.err; });
+  CHAT.hist.push({ role: "user", text: text });
+  var bot = { role: "model", text: "" };
+  CHAT.hist.push(bot);
+  CHAT.busy = true; chatRender();
+  var recent = CHAT.hist.slice(0, -1).slice(-12);
+  var lastUser = recent.filter(function (m) { return m.role === "user"; }).slice(-2).map(function (m) { return m.text; }).join(" ");
+  var payload = {
+    systemInstruction: { parts: [{ text: chatSystem(lastUser) }] },
+    contents: recent.map(function (m) { return { role: m.role, parts: [{ text: m.text }] }; }),
+    generationConfig: { maxOutputTokens: 1500 }
+  };
+  function done(errStatus, errMsg) {
+    CHAT.busy = false;
+    if (errStatus !== undefined) { CHAT.hist.pop(); CHAT.hist.push({ role: "model", err: true, text: chatErr(errStatus, errMsg) }); }
+    else if (!bot.text) bot.text = "No he pogut generar cap resposta. Prova de preguntar-ho d'una altra manera.";
+    chatRender();
+  }
+  function tryModel(mi) {
+    var model = CHAT_MODELS[mi];
+    fetch("https://generativelanguage.googleapis.com/v1beta/models/" + model + ":streamGenerateContent?alt=sse", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": CHAT_K },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      if (!r.ok) {
+        return r.text().then(function (t) {
+          var msg = ""; try { msg = JSON.parse(t).error.status || ""; } catch (e) {}
+          if ((r.status === 429 || r.status >= 500 || r.status === 404) && mi + 1 < CHAT_MODELS.length) tryModel(mi + 1);
+          else done(r.status, msg);
+        });
+      }
+      if (!r.body || !r.body.getReader) {
+        return r.text().then(function (t) { chatSSE(t, bot); done(); });
+      }
+      var rd = r.body.getReader(), dec = new TextDecoder(), buf = "";
+      function pump() {
+        return rd.read().then(function (res) {
+          if (res.done) { if (buf) chatSSE(buf, bot); done(); return; }
+          buf += dec.decode(res.value, { stream: true });
+          var cut = buf.lastIndexOf("\n\n");
+          if (cut >= 0) { chatSSE(buf.slice(0, cut), bot); buf = buf.slice(cut + 2); chatRender(); }
+          return pump();
+        });
+      }
+      return pump();
+    }).catch(function () { if (CHAT.busy) done(0); });
+  }
+  tryModel(0);
+}
+function chatSSE(chunk, bot) {
+  chunk.split("\n").forEach(function (ln) {
+    if (ln.indexOf("data:") !== 0) return;
+    try {
+      var j = JSON.parse(ln.slice(5));
+      var c = j.candidates && j.candidates[0];
+      if (c && c.content && c.content.parts) c.content.parts.forEach(function (p) { if (p.text && !p.thought) bot.text += p.text; });
+    } catch (e) {}
+  });
+}
+function chatFromQuestion() {
+  if (!S || !S.items || !S.items[S.i]) return;
+  var it = S.items[S.i];
+  var ctx = { key: (it.id !== null ? "q" + it.id : "g" + it.q) + "|" + S.i, tema: it.tema, q: it.q, code: it.code, input: it.input, opts: it.opts, ok: it.ok, yours: S.ans[S.i], exp: it.exp };
+  chatOpen(ctx, CHAT.ctx && CHAT.ctx.key === ctx.key && CHAT.hist.length ? null : "Per què la resposta correcta és la " + LET[it.ok] + "?");
+}
+document.addEventListener("keydown", function (e) { if (e.key === "Escape" && CHAT.open && !document.getElementById("drawer")) chatClose(); });
+chatFab();
 
 renderHome();
 </script>
